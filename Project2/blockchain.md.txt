@@ -1,0 +1,3 @@
+The time complextity of add_block is O(1)
+
+The space complexity of add_block is O(1) 

@@ -1,0 +1,1 @@
+Use deque class in Python collections package for 0(1) time complexity in inserting elements at the end and start. 
