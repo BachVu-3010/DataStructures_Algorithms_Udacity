@@ -1,3 +1,5 @@
-The time complextity of add_block is O(1)
+The time complextity of add_block is O(1), for n blocks the total time complexity would be O(n)
 
-The space complexity of add_block is O(1) 
+The total space complexity would be O(n) as well.
+
+I used hashlib to calculate the hash of all data and datetime to calculate the current GMT

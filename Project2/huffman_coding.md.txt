@@ -1,3 +1,7 @@
-Use minheap (heapq in Python) to achieve 0(1) time complexity in popping least used item (root of min heap)
+I use minheap (heapq in Python) to create the huffman tree
 
-Use Python dictionary type for conversion_table for 0(1) time complexity look up
+For each character, the time it takes to push into the heap is 0(logn). As we have n distict characters in the 
+worst scenario, the total time complexity would be O(nlogn)
+
+The space complexity is O(logn) to create the heap, O(n) to create the character frequency dictionary. 
+So time complexity would be O(n)

@@ -9,7 +9,14 @@ path = os.getcwd() + "\\testdir"
 
 def find_files(suffix, path):
 
+    # Edge cases
+    if path is None:
+        return "No path specified"
+    elif type(path) != str:
+        return "Path isn't a valid path"
+
     directories = os.listdir(path)
+
     files = []
 
     for dir in directories:
@@ -41,5 +48,13 @@ def find_files(suffix, path):
     """
 
 
-list = find_files(suffix=".c", path=path)
-print(list)
+# Edge test cases
+print("find_files(, None):", find_files('', None), '\n')
+print("find_files(, -1):", find_files('', -1), '\n')
+
+# General test cases
+print("find_files(\"\", .):", find_files("", "."), '\n')
+print("find_files(\".py\", .):", find_files(".py", "."), '\n')
+print("find_files(\".pdf\", .):", find_files(".pdf", "."), '\n')
+print("find_files(\".c\", .):", find_files(".c", "."), '\n')
+print("find_files(\".gitkeep\", .):", find_files(".gitkeep", "."), '\n')

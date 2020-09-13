@@ -54,6 +54,13 @@ def create_huffman_tree(data):
         node = Node(value=value, key=key)
         heappush(huffman_tree, node)
 
+    if len(huffman_tree) == 1:
+        node = heappop(huffman_tree)
+        node_ = Node()
+        node_.left = node
+
+        return node_
+
     while len(huffman_tree) > 1:
 
         node1 = heappop(huffman_tree)
@@ -86,6 +93,7 @@ def create_encoded_table(tree, current_code):
     if not tree.left and not tree.right:
         encoded_table[tree.key] = current_code
 
+    # dict.update: add a dictionary into encoded table
     encoded_table.update(create_encoded_table(tree.left, current_code + "0"))
     encoded_table.update(create_encoded_table(tree.right, current_code + "1"))
 
@@ -93,6 +101,11 @@ def create_encoded_table(tree, current_code):
 
 
 def huffman_encoding(data):
+
+    # Edge cases
+    if data is None or data == '':
+        print("No data to encode")
+        return None, None
 
     huffman_tree = create_huffman_tree(data)
     encoded_table = create_encoded_table(huffman_tree, "")
@@ -125,25 +138,30 @@ def huffman_decoding(encoded_data, tree):
     return decoded_data
 
 
-if __name__ == "__main__":
-    codes = {}
+def test_function(sentence):
+    encoded_data, tree = huffman_encoding(sentence)
 
-    a_great_sentence = "The bird is the word"
+    if encoded_data is not None:
+        print("The size of the data is: {}\n".format(sys.getsizeof(sentence)))
+        print("The content of the data is: {}\n".format(sentence))
 
-    print("The size of the data is: {}\n".format(
-        sys.getsizeof(a_great_sentence)))
-    print("The content of the data is: {}\n".format(a_great_sentence))
+        print("The size of the encoded data is: {}\n".format(
+            sys.getsizeof(int(encoded_data, base=2))))
+        print("The content of the encoded data is: {}\n".format(encoded_data))
 
-    encoded_data, tree = huffman_encoding(a_great_sentence)
+        decoded_data = huffman_decoding(encoded_data, tree)
 
-    print(tree.left.key)
+        print("The size of the decoded data is: {}\n".format(
+            sys.getsizeof(decoded_data)))
+        print("The content of the decoded data is: {}\n".format(decoded_data))
+    print('\n\n\n')
 
-    print("The size of the encoded data is: {}\n".format(
-        sys.getsizeof(int(encoded_data, base=2))))
-    print("The content of the encoded data is: {}\n".format(encoded_data))
 
-    decoded_data = huffman_decoding(encoded_data, tree)
+# Edge test cases
+test_function('')
+test_function('a')
+test_function('aa')
+test_function('aaaaaa')
 
-    print("The size of the decoded data is: {}\n".format(
-        sys.getsizeof(decoded_data)))
-    print("The content of the encoded data is: {}\n".format(decoded_data))
+# General test case
+test_function("The bird is the word")

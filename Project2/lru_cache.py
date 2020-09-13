@@ -1,4 +1,5 @@
 from collections import deque
+# use double ended queue
 # append() and popleft() fuctions provide 0(1) time complexity for enqueue and dequeue
 
 
@@ -40,20 +41,60 @@ class LRU_Cache(object):
             self.keys.popleft()
 
 
+# Edge test cases for empty cache
+our_cache = LRU_Cache(0)
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.set(1, 1)--")
+our_cache.set(1, 1)  # Can't perform operations on a 0 capacity cache
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.get(1)--")
+print("our_cache.get(1):", our_cache.get(1))  # returns -1
+print("our_cache:", our_cache, '\n')
+
+# General test cases
 our_cache = LRU_Cache(5)
+print("our_cache:", our_cache, '\n')
 
-our_cache.set(1, 1)
-our_cache.set(2, 2)
-our_cache.set(3, 3)
-our_cache.set(4, 4)
+print("--our_cache.set(1, 1)--")
+our_cache.set(1, 1)  # No return
+print("our_cache:", our_cache, '\n')
 
+print("--our_cache.set(2, 2)--")
+our_cache.set(2, 2)  # No return
+print("our_cache:", our_cache, '\n')
 
-print(our_cache.get(1))      # returns 1
-print(our_cache.get(2))     # returns 2
-print(our_cache.get(9))   # returns -1 because 9 is not present in the cache
+print("--our_cache.set(3, 3)--")
+our_cache.set(3, 3)  # No return
+print("our_cache:", our_cache, '\n')
 
-our_cache.set(5, 5)
-our_cache.set(6, 6)
+print("--our_cache.set(4, 4)--")
+our_cache.set(4, 4)  # No return
+print("our_cache:", our_cache, '\n')
 
+print("--our_cache.get(1)--")
+print("our_cache.get(1):", our_cache.get(1))  # returns 1
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.get(2)--")
+print("our_cache.get(2):", our_cache.get(2))  # returns 2
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.get(9)--")
+# returns -1 because 9 is not present in the cache
+print("our_cache.get(9):", our_cache.get(9))
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.set(5, 5)--")
+our_cache.set(5, 5)  # No return
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.set(6, 6)--")
+our_cache.set(6, 6)  # No return
+print("our_cache:", our_cache, '\n')
+
+print("--our_cache.get(3)--")
+print("our_cache.get(3):", our_cache.get(3))
 # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
-print(our_cache.get(3))
+print("our_cache:", our_cache, '\n')

@@ -28,7 +28,7 @@ class BlockChain:
     def __init__(self):
         self.current_block = Block()
 
-    def add_block(self, data):
+    def add_block(self, data=None):
 
         timestamp = time.gmtime()
         previous_hash = self.current_block.hash if self.current_block else 0
@@ -38,11 +38,13 @@ class BlockChain:
 
 blockchain = BlockChain()
 
-blockchain.add_block(1)
-print(blockchain.current_block)
+# Edge test cases
+print(blockchain)
+blockchain.add_block()
+print()
 
-blockchain.add_block(2)
-print(blockchain.current_block)
-
-blockchain.add_block(3)
-print(blockchain.current_block)
+# Test cases
+blockchain.add_block("0")
+blockchain.add_block("1")
+blockchain.add_block("2")
+print(blockchain)
