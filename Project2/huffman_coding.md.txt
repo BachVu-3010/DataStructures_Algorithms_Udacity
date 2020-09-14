@@ -1,7 +1,11 @@
 I use minheap (heapq in Python) to create the huffman tree
 
-For each character, the time it takes to push into the heap is 0(logn). As we have n distict characters in the 
+Time complexity: O(nlogn). 
+
+Explanation: For each character, the time it takes to push into the heap is 0(logn). As we have n distict characters in the 
 worst scenario, the total time complexity would be O(nlogn)
 
-The space complexity is O(logn) to create the heap, O(n) to create the character frequency dictionary. 
-So time complexity would be O(n)
+Space complexity: O(n). 
+
+Explanation: The space complexity is O(logn) to create the heap, O(n) to create the character frequency dictionary. 
+So space complexity would be O(n)

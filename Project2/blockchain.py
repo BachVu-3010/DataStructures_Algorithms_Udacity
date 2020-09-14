@@ -26,25 +26,62 @@ class Block:
 class BlockChain:
 
     def __init__(self):
-        self.current_block = Block()
+        self.blockchain = []
+        self.length = 0
 
     def add_block(self, data=None):
+        """
+        Adds a block to the blockchain
+        :return: None
+        """
 
-        timestamp = time.gmtime()
-        previous_hash = self.current_block.hash if self.current_block else 0
-        self.current_block = Block(
-            timestamp, data, previous_hash=previous_hash)
+        # Edge case
+        if data is None:
+            print("Can't add block without data")
+            return
 
+        # If we're adding the first block
+        if self.length == 0:
+            block = Block(data, previous_hash=0)
+        else:
+            block = Block(data, self.blockchain[self.length - 1].hash)
 
-blockchain = BlockChain()
+        self.blockchain.append(block)
+        self.length += 1
+
+    def __repr__(self):
+
+        # Edge case
+        if len(self.blockchain) == 0:
+            return "Blockchain empty"
+
+        s = ''
+        for i in range(len(self.blockchain)):
+            s += "Block " + str(i) + "\n"
+            s += str(self.blockchain[i]) + "\n"
+        s += f"Blockchain size is : {blockchain.size()}"
+        return s
+
+    def size(self):
+        return self.length
+
 
 # Edge test cases
-print(blockchain)
+blockchain = BlockChain()
 blockchain.add_block()
-print()
+print(blockchain)
+
 
 # Test cases
+blockchain = BlockChain()
+blockchain.add_block("0")
+blockchain.add_block("12")
+blockchain.add_block("24535")
+print(blockchain)
+
+blockchain = BlockChain()
 blockchain.add_block("0")
 blockchain.add_block("1")
 blockchain.add_block("2")
+blockchain.add_block("")
 print(blockchain)
